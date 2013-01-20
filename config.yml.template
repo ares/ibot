@@ -1,0 +1,8 @@
+:nick: 'bigbrother'
+:password: '',
+:server: 'jabber.com'
+:room: 'test'
+:debug: true
+:keep_alive: true
+:conference_server: 'conference.jabber.com'
+

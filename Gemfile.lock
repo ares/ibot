@@ -1,0 +1,29 @@
+GIT
+  remote: git://github.com/ares/jabber-bot.git
+  revision: e8f1795927c05414a0f9b46d49504b02d1033a59
+  specs:
+    jabber-bot (1.3.0)
+      xmpp4r-simple-19 (>= 0.8.7)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.0.8)
+    god (0.13.1)
+    method_source (0.8.1)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    slop (3.3.3)
+    xmpp4r (0.5)
+    xmpp4r-simple-19 (1.0.0)
+      xmpp4r (>= 0.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  god
+  jabber-bot!
+  pry
