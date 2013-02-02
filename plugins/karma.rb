@@ -1,6 +1,6 @@
 module Plugins
   class Karma
-    NICK          = '[-a-zA-Z0-9_:]+'
+    NICK          = '[^ ]+'
     PLUS_HANDLER  = /\A(?:.* )?(#{NICK})\+{2}.*\Z/
     MINUS_HANDLER = /\A(?:.* )?(#{NICK})-{2}.*\Z/
     QUERY_HANDLER = /\A(?:.* )?(#{NICK})\?{2}.*\Z/
@@ -56,6 +56,7 @@ module Plugins
       def initialize
         @file = 'karma_data.yml'
         @data ||= Hash.new { |h, k| h[k] = 0 }
+        save_data unless File.exist?(@file) # initialize data file if needed
         load_data
       end
 
@@ -76,12 +77,12 @@ module Plugins
       end
 
       def load_data
-        old_data = YAML.load_file('data.yml')
+        old_data = YAML.load_file(@file)
         old_data.each_pair { |k, v| @data[k] = v }
       end
 
       def save_data
-        File.open('data.yml', 'w+') do |f|
+        File.open(@file, 'w+') do |f|
           f.write YAML.dump(@data)
         end
       end
@@ -89,15 +90,15 @@ module Plugins
 
     module User
       def karma
-        Karma.storage.karma(self.name)
+        Karma.storage.karma(self.safe_name)
       end
 
       def increment
-        Karma.storage.add_karma(self.name, 1)
+        Karma.storage.add_karma(self.safe_name, 1)
       end
 
       def decrement
-        Karma.storage.remove_karma(self.name, 1)
+        Karma.storage.remove_karma(self.safe_name, 1)
       end
     end
   end
