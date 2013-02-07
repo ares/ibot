@@ -1,6 +1,7 @@
+# encoding UTF-8
 module Plugins
   class Coffee
-    COFFEE = /(?:kafe|kav|kavicka)/i
+    COFFEE = /(^|\s)(?:kafe|káv|kav|kávičk)([aeěiouy]|(ou|ami))?[\s\?!\.]/i
 
     def initialize(bot)
       bot.add_command(COFFEE) do |sender, message|
